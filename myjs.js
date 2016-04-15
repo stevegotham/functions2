@@ -63,11 +63,77 @@ removeM('family');
 // firstName is pork 
 // lastName is chops
 
-function printObject(obj) {
+function printObject (obj) {
     var keys = Object.keys(obj);
     for (var i=0; i<keys.length; i++) {
-    console.log(keys[i] + ' is ' + obj[keys[i]])
+    console.log(keys[i] + ' is ' + obj[ keys[i] ] )
     }
 }
 printObject({ a: 10, b: 20, c: 30 });
 printObject({ firstName: 'pork', lastName: 'chops' });
+
+// Write a function called 'vowels' which takes a string and returns an array of all the vowels in the string, including duplicates.
+// vowels('alabama') should return ['a', 'a', 'a', 'a']
+// vowels('What evil odd ducks!') should return ['a', 'e', 'i', 'o', 'u']
+
+function vowels (str) {
+    str = str.split(''); 
+    var vowelArr =['a','e','i','o','u'];
+    var arr = [];
+    for (var i=0; i<str.length; i++) {
+        for (var ii =0; ii<vowelArr.length; ii++) {
+            if (str[i] === vowelArr[ii]) {
+                arr.push(str[i])
+            }
+        }
+    }
+    return arr;
+}
+
+function vowels2 (str) {
+    str = str.split('');
+    var vowelArr =['a','e','i','o','u'];
+    var arr = [];
+    function myFunc(x) {
+        for(var i=0; i<vowelArr.length; i++) {
+            if (x === vowelArr[i]) {
+                arr.push(x);
+            }
+        }
+    }
+    str.map(myFunc);
+    return arr;
+}
+
+// Write a function called 'twins' which takes an array and returns true if every adjacent pair of items in the array is the same.
+// twins(['a', 'a', 'b', 'b', 'c', 'c']) should return true
+// twins(['a', 'a', 'b', 'c', 'd', 'd']) should return false
+// twins(['a', 'a', 'b', 'z']) should return false
+// twins(['a', 'a', undefined]) should return false
+
+function twins(arr) {
+    var checkArr = []
+    for (var i=0; i<arr.length; i+=2) {
+        if(arr[i] === arr[i+1]) {
+            checkArr.push(arr[i] + arr[i+1])
+        }
+    }
+    if (checkArr.length !== arr.length/2) {
+        return false;
+    }
+    return true;
+}
+
+function twins2(arr) {
+    var count = 0;
+    for (var i=0; i<arr.length; i+=2) {
+        if(arr[i] === arr[i+1]) {
+            count += 1;
+        }
+    }
+    if (count !== arr.length/2) {
+        return false;
+    }
+    return true;
+}
+
